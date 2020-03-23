@@ -5,6 +5,7 @@ import 'package:itunesmusicapp/models/album.dart';
 import 'package:itunesmusicapp/ui/album_details_header.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+///display all the details of specific album
 class AlbumDetailsPage extends StatefulWidget {
   final Album album;
 
@@ -71,7 +72,7 @@ class _AlbumDetailsPageState extends State<AlbumDetailsPage> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      'Artist URL:',
+                      'Artist URL :',
                       style: TextStyle(
                         fontFamily: "Proxima Nova",
                         color: Colors.white,
@@ -103,7 +104,7 @@ class _AlbumDetailsPageState extends State<AlbumDetailsPage> {
                     height:
                         ScreenUtil.getResponsiveHeightOfWidget(30, size.width)),
                 Text(
-                  'Other Albums:',
+                  'Other Albums :',
                   style: TextStyle(
                     fontFamily: "Proxima Nova",
                     color: Colors.white,
@@ -127,7 +128,7 @@ class _AlbumDetailsPageState extends State<AlbumDetailsPage> {
                 Row(
                   children: <Widget>[
                     Text(
-                      'Released:',
+                      'Released :',
                       style: TextStyle(
                         fontFamily: "Proxima Nova",
                         color: Colors.white,
@@ -200,7 +201,7 @@ class _AlbumDetailsPageState extends State<AlbumDetailsPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Text(
-                'Name:',
+                'Name :',
                 style: TextStyle(
                   fontFamily: "Proxima Nova",
                   color: Color(0xff191919),
@@ -229,7 +230,7 @@ class _AlbumDetailsPageState extends State<AlbumDetailsPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Text(
-                'URL:',
+                'URL :',
                 style: TextStyle(
                   fontFamily: "Proxima Nova",
                   color: Color(0xff191919),

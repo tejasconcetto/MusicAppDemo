@@ -26,7 +26,9 @@ dependencies:
   http: ^0.12.0
   pull_to_refresh: ^1.4.8
   intl: 0.16.1
-  url_launcher:
+  url_launcher: 5.4.2
+  connectivity: 0.4.4
+
 
 dev_dependencies:
   flutter_test:

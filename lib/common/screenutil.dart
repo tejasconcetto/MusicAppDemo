@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+///this utility class is used to return responsive height and width according to screen size
 class ScreenUtil {
   static final ScreenUtil instance = ScreenUtil();
 

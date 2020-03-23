@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:itunesmusicapp/common/screenutil.dart';
 
+///display loading state when album list is fetching from api
 class AlbumCardLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

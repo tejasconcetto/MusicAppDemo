@@ -5,7 +5,8 @@ import 'package:itunesmusicapp/common/custom_bottom_sheet.dart';
 import 'package:itunesmusicapp/common/screenutil.dart';
 import 'package:itunesmusicapp/models/album.dart';
 import 'package:itunesmusicapp/ui/album_card.dart';
-import 'package:itunesmusicapp/ui/albumn_card_loading.dart';
+import 'package:itunesmusicapp/ui/album_card_loading.dart';
+import 'package:itunesmusicapp/utils/network_manager_impl.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 ///Display all album list
@@ -20,12 +21,14 @@ class _MyAppState extends State<HomeAlbumListPage> {
   AlbumBloc _albumBloc;
   RefreshController _refreshController;
   ScrollController _scrollController = ScrollController();
+  NetworkManagerImpl _networkManagerImpl = NetworkManagerImpl();
 
   @override
   void initState() {
     _refreshController = RefreshController();
     _albumBloc = AlbumBloc();
     _albumBloc.fetchAlbumList();
+    _networkManagerImpl.getNetworkStateStream().listen((onData) {});
     super.initState();
   }
 
@@ -65,18 +68,34 @@ class _MyAppState extends State<HomeAlbumListPage> {
                   stream: _albumBloc.albumDataStream,
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
-                      return _albumGridCards(snapshot.data
+                      return _buildAlbumGridCards(snapshot.data
                           .map((album) => Container(
                                 height: height,
                                 child: AlbumCard(album),
                               ))
                           .toList());
                     } else if (snapshot.hasError) {
-                      return Text("${snapshot.error}");
+                      return Container(
+                          margin: EdgeInsets.only(
+                              top: ScreenUtil.getResponsiveWidthOfWidget(
+                                  size.height ~/ 2.3, size.width),
+                            left: ScreenUtil.getResponsiveWidthOfWidget(
+                                20, size.width),
+                            right: ScreenUtil.getResponsiveWidthOfWidget(
+                                20, size.width)
+                          ),
+                          alignment: Alignment.center,
+                          child: Text(
+                            "${snapshot.error}",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontFamily: "Proxima Nova"),
+                          ));
                     }
 
                     // By default, show a loading spinner.
-                    return _albumGridLoadingCards();
+                    return _buildAlbumGridLoadingCards();
                   },
                 )
               ],
@@ -88,7 +107,7 @@ class _MyAppState extends State<HomeAlbumListPage> {
   }
 
   /*Generate grid view and display data into two column*/
-  Widget _albumGridCards(List<Widget> items) {
+  Widget _buildAlbumGridCards(List<Widget> items) {
     int count = 2;
     double _childAspectRatioTab = 150 / 200;
 
@@ -106,10 +125,10 @@ class _MyAppState extends State<HomeAlbumListPage> {
   }
 
   /*When data is fetching from api then display this like place holder*/
-  Widget _albumGridLoadingCards() {
+  Widget _buildAlbumGridLoadingCards() {
     var loadingCards =
         [0, 1, 2, 3, 4, 5].map((_) => AlbumCardLoading()).toList();
-    return _albumGridCards(loadingCards);
+    return _buildAlbumGridCards(loadingCards);
   }
 
   /*Created widget for more options for display it on App bar*/

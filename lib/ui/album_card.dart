@@ -4,6 +4,7 @@ import 'package:itunesmusicapp/models/album.dart';
 
 import 'album_details_page.dart';
 
+///used to single item of album like a row in grid view
 class AlbumCard extends StatelessWidget {
   final Album _album;
 
@@ -59,7 +60,7 @@ class AlbumCard extends StatelessWidget {
         child: Hero(
           tag: _album.id,
           child: Image.network(
-            imageUrl,
+            imageUrl.replaceAll("200x200", "450x450"),
             fit: BoxFit.cover,
           ),
         ),

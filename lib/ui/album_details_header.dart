@@ -107,7 +107,7 @@ class _AlbumDetailsHeaderState extends State<AlbumDetailsHeader>
                 Hero(
                   tag: widget.album.id,
                   child: Image.network(
-                    widget?.album?.artworkUrl100 ?? '',
+                    widget.album?.artworkUrl100?.replaceAll("200x200", "450x450") ?? '',
                     fit: BoxFit.cover,
                   ),
                 ),

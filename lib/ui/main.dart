@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:itunesmusicapp/ui/home_album_list_page.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(MusicApp());
 
-class MyApp extends StatelessWidget {
+///this is them main class of our app
+class MusicApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {

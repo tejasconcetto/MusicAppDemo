@@ -6,6 +6,7 @@ import 'package:itunesmusicapp/models/album.dart';
 
 import '../service/base_network_service.dart';
 
+///define all method for fetch data from api
 class AlbumNetworkService extends BaseNetworkService {
   AlbumNetworkService(ITuneClient client, String host) : super(client, host);
 
