@@ -43,19 +43,31 @@ class AlbumBloc {
   }
 
   /*Sort data which is new released*/
-  sortAlbumListToNewest() {
-    _albumList?.sort((a, b) {
-      return _convertDate(b.releaseDate).compareTo(_convertDate(a.releaseDate));
-    });
-    albumDataSink.add(_albumList);
+  sortAlbumListToNewest() async {
+    NetworkState networkState = await _networkManagerImpl.getNetworkState();
+    if (networkState != NetworkState.off) {
+      _albumList?.sort((albumItem1, albumItem2) {
+        return _convertDate(albumItem2.releaseDate).compareTo(_convertDate(albumItem1.releaseDate));
+      });
+      albumDataSink.add(_albumList);
+    }
+    else {
+      albumDataSink.addError("No internet connection available");
+    }
   }
 
   /*Sort data which is oldest based on released date*/
-  sortAlbumListToOldest() {
-    _albumList?.sort((a, b) {
-      return _convertDate(a.releaseDate).compareTo(_convertDate(b.releaseDate));
-    });
-    albumDataSink.add(_albumList);
+  sortAlbumListToOldest() async {
+    NetworkState networkState = await _networkManagerImpl.getNetworkState();
+    if (networkState != NetworkState.off) {
+      _albumList?.sort((albumItem1, albumItem2) {
+        return _convertDate(albumItem1.releaseDate).compareTo(_convertDate(albumItem2.releaseDate));
+      });
+      albumDataSink.add(_albumList);
+    }
+    else {
+      albumDataSink.addError("No internet connection available");
+    }
   }
 
   /*Convert string date to DateTime*/

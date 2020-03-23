@@ -6,9 +6,8 @@ class ITuneClient {
 
   http.Client client = http.Client();
 
-  /// TODO
-  /// This does not need to be called from outside the iTune_client and has to
-  /// be made private.
+
+  /// this is used to append query parameter to url
   static String addQueryParamsToUrl(String originalUrl, Map<String, String> queryParams) {
     assert(originalUrl != null);
     var oldUrl = Uri.parse(originalUrl);
